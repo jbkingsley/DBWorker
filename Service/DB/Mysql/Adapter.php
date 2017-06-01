@@ -1,0 +1,52 @@
+<?php
+declare(strict_types=1);
+
+namespace DBWorker\Service\DB\Mysql;
+
+if (!extension_loaded('pdo_mysql')) {
+    throw new \Exception('Require "pdo_mysql" extension.');
+}
+
+class Adapter extends \DBWorker\Service\DB\Adapter
+{
+    protected $identifier_symbol = '`';
+
+    public function __construct(array $config = [])
+    {
+        if (isset($config['options'])) {
+            $config['options'][\PDO::MYSQL_ATTR_FOUND_ROWS] = true;
+        } else {
+            $config['options'] = [\PDO::MYSQL_ATTR_FOUND_ROWS => true];
+        }
+
+        parent::__construct($config);
+    }
+
+    public function lastID(string $table = null, string $column = null)
+    {
+        return $this->execute('SELECT last_insert_id()')->getCol();
+    }
+
+    public function enableBufferedQuery(): self
+    {
+        $this->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
+
+        return $this;
+    }
+
+    public function disableBufferedQuery(): self
+    {
+        $this->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
+
+        return $this;
+    }
+
+    public function getTables(): array
+    {
+        return $this->select('information_schema.TABLES')
+                    ->setColumns('TABLE_NAME')
+                    ->where('TABLE_SCHEMA = database()')
+                    ->execute()
+                    ->getCols();
+    }
+}
