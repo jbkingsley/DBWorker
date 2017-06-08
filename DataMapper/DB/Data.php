@@ -9,7 +9,7 @@ use DBWorker\Service\DB\Select;
  */
 class Data extends \DBWorker\DataMapper\Data
 {
-    protected static $mapper = '\Owl\DataMapper\DB\Mapper';
+    protected static $mapper = '\DBWorker\DataMapper\DB\Mapper';
 
     public static function select(): Select
     {

@@ -127,7 +127,7 @@ class Logger
     {
         if (self::$instance === null) {
             $startTime      = microtime(true) * 1000;
-            $stdClass = new stdClass();
+            $stdClass = new \stdClass();
             $stdClass->appName = 'AllLog';
             $stdClass->type = 'LOCAL_LOG';
             $stdClass->level = '0x15';

@@ -5,7 +5,7 @@ namespace DBWorker\DataMapper\DB;
 
 class Select extends \DBWorker\Service\DB\Select
 {
-    public function get(int $limit = 0)
+    public function get(int $limit = 0): array
     {
         $result = [];
 

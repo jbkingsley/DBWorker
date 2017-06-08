@@ -86,7 +86,7 @@ class Mapper extends \DBWorker\DataMapper\Mapper
         return (bool) $service->update($collection, $record, $where, $params);
     }
 
-    protected function doDelete(Data $data, Service $service = null, $collection = null): bool
+    protected function doDelete(Data $data, Service $service = null, string $collection = null): bool
     {
         $service = $service ?: $this->getService();
         $collection = $collection ?: $this->getCollection();
