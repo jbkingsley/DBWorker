@@ -1,11 +1,17 @@
 {
-  "name"  : "kings/db-worker",
-  "keywords": ["distributed"],
-  "homepage": "http://www.limx.cn",
-  "license" : "MIT",
-  "require": {
-  },
-  "autoload": {
-    "psr-4": {"DBWorker\\":  "./"}
-  }
+	"name": "kings/db-worker",
+	"type": "framework",
+	"description": "db-worker",
+	"keywords": ["distributed"],
+	"homepage": "http://www.lims.link",
+	"license": "MIT",
+	"require": {
+		"php": ">=5.4",
+		"ext-pdo": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"DBWorker\\": "./src"
+		}
+	}
 }
